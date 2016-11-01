@@ -1,0 +1,53 @@
+<section>
+  <div class="page-header">
+    <h1>Templates</h1>
+  </div>
+<table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Group</th>
+        <th>Process</th>
+        <th>Sub Process</th>
+        <th>Process Owner</th>
+        <th>Risk Level</th>
+        <th>Detail</th>
+
+      </tr>
+      </thead>
+      
+      <tr data-ng-repeat="template in vm.templates" data-ui-sref="templates.view({ templateId: template._id })" style="cursor: pointer;">
+    
+       <th>{{template.group}}</th>
+       <th>{{template.process}}</th>
+       <th>{{template.subprocess}}</th>       
+       <th>{{template.processowner}}</th>
+       <th>{{template.risklevel}}</th>
+       <th>{{template.detail}}</th>
+    
+       
+      </tr>
+
+    </table>
+<!--
+  <div class="list-group">
+    <a data-ng-repeat="template in vm.templates"
+       data-ui-sref="templates.view({ templateId: template._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="template.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="template.user" data-ng-bind="template.user.displayName"></span>
+        <span data-ng-if="!template.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="template.name"></h4>
+    </a>
+  </div>
+
+
+  <div class="alert alert-warning text-center" data-ng-if="vm.templates.$resolved && !vm.templates.length">
+    No Templates yet, why don't you <a data-ui-sref="templates.create">create one</a>?
+  </div>-->
+
+
+</section>

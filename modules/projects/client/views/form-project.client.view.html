@@ -1,0 +1,114 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.project._id ? 'Edit Project' : 'New Project'}}</h1>
+  </div>
+  <div class="col-md-12">
+  <!--
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Project Owner</th>
+        <th>Start Date</th>
+        <th>Finish Date</th>
+
+      </tr>
+      </thead>
+      
+      <tr data-ng-repeat="project in vm.projects" data-ui-sref="projects.view({ projectId: project._id })" style="cursor: pointer;">
+    
+       <th>{{project.projectname}}</th>
+       <th>{{project.projectowner}}</th>
+       <th>{{project.startdate}}</th>
+       <th>{{project.finishdate}}</th>
+    
+       
+      </tr>
+
+    </table>-->
+
+    <form name="vm.form.projectForm" class="form-horizontal" ng-submit="vm.save(vm.form.projectForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectname">Project Name</label>
+          <input name="projectname" type="text" ng-model="vm.project.projectname" id="projectname" class="form-control" placeholder="Project Name" required>
+          <div ng-messages="vm.form.projectForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project name is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="bubp">BU/BP</label>
+          <input name="bubp" type="text" ng-model="vm.project.bubp" id="bubp" class="form-control" placeholder="BU/BP" required>
+          <div ng-messages="vm.form.projectForm.bubp.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">BU/BP is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectmanager">Project Manager</label>
+          <input name="projectmanager" type="text" ng-model="vm.project.projectmanager" id="projectmanager" class="form-control" placeholder="Project Manager" required>
+          <div ng-messages="vm.form.projectForm.projectmanager.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project Manager is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectsup">Project Supervisor</label>
+          <input name="projectsup" type="text" ng-model="vm.project.projectsup" id="projectsup" class="form-control" placeholder="Project Supervisor" required>
+          <div ng-messages="vm.form.projectForm.projectsup.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project Supervisor is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectmember">Project Member</label>
+          <input name="projectmember" type="text" ng-model="vm.project.projectmember" id="projectmember" class="form-control" required>
+          <div ng-messages="vm.form.projectForm.projectmember.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project Member is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectowner">Project Owner</label>
+          <input name="projectowner" type="text" ng-model="vm.project.projectowner" id="projectowner" class="form-control" placeholder="Project Owner" required>
+          <div ng-messages="vm.form.projectForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project owner is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="startdate">Start Date</label>
+          <input name="startdate" type="text" ng-model="vm.project.startdate" id="startdate" class="form-control" placeholder="Start Date" required>
+          <div ng-messages="vm.form.projectForm.startdate.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Start date is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="finishdate">Finish Date</label>
+          <input name="finishdate" type="text" ng-model="vm.project.finishdate" id="finishdate" class="form-control" placeholder="Finish Date" required>
+          <div ng-messages="vm.form.projectForm.finishdate.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Finish Date is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectdetail">Project Detail</label>
+          <input name="projectdetail" type="text" ng-model="vm.project.projectdetail" id="projectdetail" class="form-control" placeholder="Project Detail" required>
+          <div ng-messages="vm.form.projectForm.projectdetail.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project Detail is required.</p>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.project._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

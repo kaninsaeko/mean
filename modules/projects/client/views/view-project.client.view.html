@@ -1,0 +1,240 @@
+<section>
+  <div class="page-header">
+    <h1 data-ng-bind="vm.project.projectname"></h1>
+  </div>
+  <div class="pull-right"
+       data-ng-show="vm.project.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       data-ui-sref="projects.edit({ projectId: vm.project._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span data-ng-bind="vm.project.created | date:'mediumDate'"></span>
+      by
+      <span data-ng-if="vm.project.user"
+            data-ng-bind="vm.project.user.displayName"></span>
+      <span data-ng-if="!vm.project.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" data-ng-bind="vm.project.content"></p>
+
+  
+  <h4><strong>BU/BP</strong> : {{vm.project.bubp}}</h4>
+  <h4><strong>Manager</strong> : {{vm.project.projectmanager}} | <strong>Supervisor</strong> : {{vm.project.projectsup}}</h4>
+  <h4></h4>
+  <h4><strong>Member</strong> : {{vm.project.projectmember}}</h4>
+  <h4><strong>Project Owner</strong> : {{vm.project.projectowner}}</h4>
+  <h4><strong>Date</strong> : {{vm.project.startdate}} - {{vm.project.finishdate}}</h4>
+  <p></p>
+  <h4><strong>Detail</strong> : {{vm.project.projectdetail}}</h4>
+ 
+ <form name="vm.form.auditprogramForm" class="form-horizontal" ng-submit="addauditpg(vm.auditprogram.projectname,vm.auditprogram.process,vm.auditprogram.subprocess,vm.auditprogram.processowner,vm.auditprogram.detail,vm.auditprogram.risklevel)" novalidate>
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>         
+          <input type="checkbox" ng-model="master" ng-click="selectAllRows()"/>
+        </th>
+        <th>        
+          <input ng-model="searchGroup" name="searchGroup" type="text" id="searchGroup" class="form-control" placeholder="Search">
+        </th>
+        <th>
+        <!--Process
+          <input ng-model="searchProcess2" name="searchGroup" type="text" id="searchGroup" class="form-control" placeholder="Search">
+        </th>
+        <th>
+        Sub Process
+          <input ng-model="searchSubprocess" name="searchGroup" type="text" id="searchGroup" class="form-control" placeholder="Search">
+        </th>
+        <th>
+        Process Owner
+          <input ng-model="searchGroup" name="searchGroup" type="text" id="searchGroup" class="form-control" placeholder="Search">
+        </th>
+        <th>
+        Risk Level
+          <input ng-model="searchGroup" name="searchGroup" type="text" id="searchGroup" class="form-control" placeholder="Search">
+        </th>
+        <th>
+        Detail
+          <input ng-model="searchGroup" name="searchGroup" type="text" id="searchGroup" class="form-control" placeholder="Search">
+        </th>-->
+
+      </tr>
+      </thead>
+      
+      <!--<tr data-ng-repeat="template in vm.templates" data-ui-sref="templates.view({ templateId: template._id })" style="cursor: pointer;">-->
+      <tr data-ng-repeat="template in vm.templates | filter:searchGroup"  style="cursor: pointer;">
+        <th>          
+          <input type="checkbox"  ng-model="tableSelection[$index]"/>
+        </th>
+        <th>{{template.group}}</th>
+        <th>{{template.process}}</th>
+        <th>{{template.subprocess}}</th>       
+        <th>{{template.processowner}}</th>
+        <th>{{template.risklevel}}</th>
+        <th>{{template.detail}}</th>
+    
+       
+      </tr>
+
+    </table>
+
+    <a class="btn btn-primary" data-ng-click="addtemplate(vm.project.projectname)">
+     Load from template
+      </a>
+
+    I have {{vm.templates.length}} record
+    <table class="table table-striped">
+      <thead>
+      <tr>
+
+        <form name="vm.form.auditprogramForm" class="form-horizontal" ng-submit="addauditpg(vm.auditprogram.projectname,vm.auditprogram.process,vm.auditprogram.subprocess,vm.auditprogram.processowner,vm.auditprogram.detail,vm.auditprogram.risklevel)" novalidate>
+      <fieldset>
+
+        <th>
+        
+          <label class="control-label" for="projectname">Project Name</label>
+          <input name="projectname" type="text" ng-model="vm.auditprogram.projectname=vm.project.projectname" id="projectname" class="form-control" placeholder="Project Name" required>
+          <div ng-messages="vm.form.auditprogramForm.projectname.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project name is required.</p>
+        
+        </div>
+        </th>
+
+        <th>
+          <label class="control-label" for="process">Process</label>
+          <input name="process" type="text" ng-model="vm.auditprogram.process" id="process" class="form-control" placeholder="Process" required>
+          <div ng-messages="vm.form.auditprogramForm.process.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Process is required.</p>
+          
+        </div></th>
+        <th>
+          <label class="control-label" for="subprocess">SubProcess</label>
+          <input name="subprocess" type="text" ng-model="vm.auditprogram.subprocess" id="subprocess" class="form-control" placeholder="SubProcess" required>
+          <div ng-messages="vm.form.auditprogramForm.subprocess.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">SubProcess is required.</p>
+      
+        </div></th>
+        <th>
+          <label class="control-label" for="name">Process Owner</label>
+          <input name="processowner" type="text" ng-model="vm.auditprogram.processowner" id="processowner" class="form-control" placeholder="Process Owner" required>
+          <div ng-messages="vm.form.auditprogramForm.processowner.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Process Owner is required.</p>
+          
+        </div></th>
+        <th>
+          <label class="control-label" for="risklevel">Risk Level</label>
+          <input name="risklevel" type="text" ng-model="vm.auditprogram.risklevel" id="risklevel" class="form-control" placeholder="Risk Level" required>
+          <div ng-messages="vm.form.auditprogramForm.risklevel.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Risk Level is required.</p>
+         
+        </div></th>
+        
+        <th>
+          <label class="control-label" for="detail">Detail</label>
+          <input name="detail" type="text" ng-model="vm.auditprogram.detail" id="detail" class="form-control" placeholder="Detail" required>
+          <div ng-messages="vm.form.auditprogramForm.detail.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Detail is required.</p>
+          </div>
+        </th>
+
+
+        <th> <button type="submit" class="btn btn-default">{{vm.auditprogram._id ? 'Update' : 'Create'}}</button></th>
+
+
+
+
+
+      </tr>
+      </thead>
+      
+      <!--<tr data-ng-repeat="auditprogram in vm.auditprograms | filter:vm.project.projectname" data-ui-sref="auditprograms.view({ auditprogramId: auditprogram._id })" style="cursor: pointer;">-->
+      <tr data-ng-repeat="auditprogram in vm.auditprograms | filter:vm.project.projectname" style="cursor: pointer;">
+    
+       <th>{{auditprogram.projectname}}</th>
+       <th>{{auditprogram.process}}</th>
+       <th>{{auditprogram.subprocess}}</th>       
+       <th>{{auditprogram.processowner}}</th>
+       <th>{{auditprogram.risklevel}}</th>
+       <th>{{auditprogram.detail}}</th>
+      <th>
+      <!--<a class="btn btn-primary" data-ng-click="deleteauditpg(auditprogram._id,$index,auditprogram)">-->
+      <a class="btn btn-primary" data-ng-click="deleteauditpg(auditprogram._id,$index)">
+      <i class="glyphicon glyphicon-trash"></i>
+      </a>
+      </th>       
+      </tr>
+    </table>
+
+  <!--<div class="col-md-12">
+    <form name="vm.form.auditprogramForm" class="form-horizontal" ng-submit="addauditpg(vm.auditprogram.projectname,vm.auditprogram.process,vm.auditprogram.subprocess,vm.auditprogram.processowner,vm.auditprogram.detail,vm.auditprogram.risklevel)" novalidate>
+      <fieldset>
+        
+     
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="projectname">Project Name</label>
+          <input name="projectname" type="text" ng-model="vm.auditprogram.projectname=vm.project.projectname" id="projectname" class="form-control" placeholder="Project Name" required>
+          <div ng-messages="vm.form.auditprogramForm.projectname.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project name is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="process">process</label>
+          <input name="process" type="text" ng-model="vm.auditprogram.process" id="process" class="form-control" placeholder="Process" required>
+          <div ng-messages="vm.form.auditprogramForm.process.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Process is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="subprocess">SubProcess</label>
+          <input name="subprocess" type="text" ng-model="vm.auditprogram.subprocess" id="subprocess" class="form-control" placeholder="SubProcess" required>
+          <div ng-messages="vm.form.auditprogramForm.subprocess.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">SubProcess is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Process Owner</label>
+          <input name="processowner" type="text" ng-model="vm.auditprogram.processowner" id="processowner" class="form-control" placeholder="Process Owner" required>
+          <div ng-messages="vm.form.auditprogramForm.processowner.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Process Owner is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="detail">Detail</label>
+          <input name="detail" type="text" ng-model="vm.auditprogram.detail" id="detail" class="form-control" placeholder="Detail" required>
+          <div ng-messages="vm.form.auditprogramForm.detail.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Detail is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="risklevel">Risk Level</label>
+          <input name="risklevel" type="text" ng-model="vm.auditprogram.risklevel" id="risklevel" class="form-control" placeholder="Risk Level" required>
+          <div ng-messages="vm.form.auditprogramForm.risklevel.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Risk Level is required.</p>
+          </div>
+        </div>
+
+      
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.auditprogram._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>-->
+</section>

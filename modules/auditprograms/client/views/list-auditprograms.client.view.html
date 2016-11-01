@@ -1,0 +1,54 @@
+<section>
+  <div class="page-header">
+    <h1>Auditprograms</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="auditprogram in vm.auditprograms"
+       data-ui-sref="auditprograms.view({ auditprogramId: auditprogram._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="auditprogram.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="auditprogram.user" data-ng-bind="auditprogram.user.displayName"></span>
+        <span data-ng-if="!auditprogram.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="auditprogram.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.auditprograms.$resolved && !vm.auditprograms.length">
+    No Auditprograms yet, why don't you <a data-ui-sref="auditprograms.create">create one</a>?
+  </div>
+
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Process</th>
+        <th>Sub Process</th>
+        <th>Detail</th>
+        <th>Process Owner</th>
+        <th>Risk Level</th>
+        <th></th>
+
+      </tr>
+      </thead>
+      
+      <tr data-ng-repeat="auditprogram in vm.auditprograms" ng-click="vm.count=project.projectname" style="cursor: pointer;">
+    
+       <th>{{auditprogram._id}}</th>
+       <th>{{auditprogram.process}}</th>
+       <th>{{auditprogram.subprocess}}</th>
+       <th>{{auditprogram.detail}}</th>
+       <th>{{auditprogram.processowner}}</th>
+       <th>{{auditprogram.risklevel}}</th>
+       <th><a class="btn btn-primary" data-ng-click="vm.ft()">
+       {{vm.deletess}}
+      <i class="glyphicon glyphicon-trash"></i>
+    </a></th>
+       
+       
+      </tr>
+
+    </table>  
+</section>

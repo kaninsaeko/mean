@@ -1,0 +1,70 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.template._id ? 'Edit Template' : 'New Template'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.templateForm" class="form-horizontal" ng-submit="vm.save(vm.form.templateForm.$valid)" novalidate>
+      <fieldset>
+        
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Group</label>
+          <input name="group" type="text" ng-model="vm.template.group" id="name" class="form-control" placeholder="Group" required>
+          <div ng-messages="vm.form.templateForm.group.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Template name is required.</p>
+          </div>
+        </div>
+
+       
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="process">process</label>
+          <input name="process" type="text" ng-model="vm.template.process" id="process" class="form-control" placeholder="Process" required>
+          <div ng-messages="vm.form.templateForm.process.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Process is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="subprocess">SubProcess</label>
+          <input name="subprocess" type="text" ng-model="vm.template.subprocess" id="subprocess" class="form-control" placeholder="SubProcess" required>
+          <div ng-messages="vm.form.templateForm.subprocess.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">SubProcess is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Process Owner</label>
+          <input name="processowner" type="text" ng-model="vm.template.processowner" id="processowner" class="form-control" placeholder="Process Owner" required>
+          <div ng-messages="vm.form.templateForm.processowner.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Process Owner is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="detail">Detail</label>
+          <input name="detail" type="text" ng-model="vm.template.detail" id="detail" class="form-control" placeholder="Detail" required>
+          <div ng-messages="vm.form.templateForm.detail.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Detail is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="risklevel">Risk Level</label>
+          <input name="risklevel" type="text" ng-model="vm.template.risklevel" id="risklevel" class="form-control" placeholder="Risk Level" required>
+          <div ng-messages="vm.form.templateForm.risklevel.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Risk Level is required.</p>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.template._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Preparations</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="preparation in vm.preparations"
+       data-ui-sref="preparations.view({ preparationId: preparation._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="preparation.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="preparation.user" data-ng-bind="preparation.user.displayName"></span>
+        <span data-ng-if="!preparation.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="preparation.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.preparations.$resolved && !vm.preparations.length">
+    No Preparations yet, why don't you <a data-ui-sref="preparations.create">create one</a>?
+  </div>
+</section>

@@ -1,0 +1,77 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.followup._id ? 'Edit Followup' : 'New Followup'}}</h1>
+  </div>
+  <div class="col-md-12">
+    
+    <form name="vm.form.followupForm" class="form-horizontal" ng-submit="vm.save(vm.form.followupForm.$valid)" novalidate>
+    
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="bu">Business Unit</label>
+          <input name="bu" type="text" ng-model="vm.followup.bu" id="bu" class="form-control" placeholder="BU" required>
+          <div ng-messages="vm.form.followupForm.bu.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Followup BU is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="dep">Department</label>
+          <input name="dep" type="text" ng-model="vm.followup.dep" id="dep" class="form-control" placeholder="Department" required>
+          <div ng-messages="vm.form.followupForm.dep.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Followup Title is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">Title</label>
+          <input name="title" type="text" ng-model="vm.followup.title" id="title" class="form-control" placeholder="Title" required>
+          <div ng-messages="vm.form.followupForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Followup Title is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="dep">Finding</label>
+          <textarea name="finding" type="text" ng-model="vm.followup.finding" id="finding" class="form-control" placeholder="Finding" cols="30" rows="4"  required></textarea>
+          <div ng-messages="vm.form.followupForm.dep.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Followup Finding is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="risk">Risk Impact</label>
+
+          <select class="form-control" ng-model="vm.followup.risk">
+              <option value="สูงมาก">สูงมาก</option>
+              <option value="สูง">สูง</option>
+              <option value="กลาง">กลาง</option>
+              <option value="ต่ำ">ต่ำ</option>
+
+          </select>
+
+
+          <!--<input name="risk" type="text" ng-model="vm.followup.risk" id="risk" class="form-control" placeholder="Risk Impact" required>-->
+          <div ng-messages="vm.form.followupForm.dep.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Followup Risk Impact is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="recom">Recomendation</label>
+          <textarea name="recom" type="text" ng-model="vm.followup.recom" id="recom" class="form-control" cols="30" rows="10" placeholder="Recomendation" required></textarea> 
+          <div ng-messages="vm.form.followupForm.recom.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Followup Recomendation is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.followup._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section>
+  <div class="page-header">
+    <!--<h1 data-ng-bind="vm.customer.firstname"></h1>-->
+  </div>
+    <h1 data-ng-bind="'First Name'+' : '+vm.customer.firstname"></h1>
+    <h1 data-ng-bind="'Surname'+' : '+vm.customer.surname"></h1>
+    <h1 data-ng-bind="'Phone'+' : '+vm.customer.phone"></h1>
+    <h1 data-ng-bind="'Email'+' : '+vm.customer.email"></h1>
+  <div class="pull-right"
+       data-ng-show="vm.customer.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       data-ui-sref="customers.edit({ customerId: vm.customer._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span data-ng-bind="vm.customer.created | date:'mediumDate'"></span>
+      by
+      <span data-ng-if="vm.customer.user"
+            data-ng-bind="vm.customer.user.displayName"></span>
+      <span data-ng-if="!vm.customer.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" data-ng-bind="vm.customer.content"></p>
+</section>

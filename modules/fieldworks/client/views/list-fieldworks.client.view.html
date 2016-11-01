@@ -1,0 +1,162 @@
+<section>
+  <div class="page-header">
+    <h1>Fieldworks</h1>
+  </div>
+  
+  <input name="searchText" type="text" ng-model="searchText" id="searchText" class="form-control" placeholder="Year" required>
+
+  <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.projects">
+    <option ng-repeat="project in vm.projects | filter:searchText" value="{{project.projectname}}">{{project.projectname}}</option>
+  </select>
+  
+  <!--<div class="list-group">
+    <a data-ng-repeat="fieldwork in vm.fieldworks"
+       data-ui-sref="fieldworks.view({ fieldworkId: fieldwork._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="fieldwork.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="fieldwork.user" data-ng-bind="fieldwork.user.displayName"></span>
+        <span data-ng-if="!fieldwork.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="fieldwork.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.fieldworks.$resolved && !vm.fieldworks.length">
+    No Fieldworks yet, why don't you <a data-ui-sref="fieldworks.create">create one</a>?
+  </div>-->
+
+
+
+  
+  <table class="table table-striped">
+      <thead>
+      
+      </thead>
+     <br/>
+      <!--<tr data-ng-repeat="auditprogram in vm.auditprograms | filter:vm.project.projectname" data-ui-sref="auditprograms.view({ auditprogramId: auditprogram._id })" style="cursor: pointer;">-->
+      <tr ng-repeat-start="auditprogram in vm.auditprograms | filter:vm.projects" style="cursor: pointer;">
+        
+      <th>
+      <button ng-if="auditprogram.expanded" ng-click="auditprogram.expanded = false">-</button>
+      <button ng-if="!auditprogram.expanded" ng-click="auditprogram.expanded = true">+</button></th>
+      <th>{{auditprogram.projectname}}</th>
+      <th>{{auditprogram.process}}</th>
+      <th>{{auditprogram.subprocess}}</th>       
+      <th>{{auditprogram.processowner}}</th>
+      <th>{{auditprogram.risklevel}}</th>
+      <th>{{auditprogram.detail}}</th>
+
+
+
+
+      <th>
+      <!--<a class="btn btn-primary" data-ng-click="deleteauditpg(auditprogram._id,$index,auditprogram)">-->
+      <a class="btn btn-primary" data-ng-click="deleteauditpg(auditprogram._id,$index)">
+      <i class="glyphicon glyphicon-trash"></i>
+      </a>
+      </th>  
+
+          
+
+      </tr>
+
+      <tr ng-if="auditprogram.expanded" ng-repeat-end="">
+            <td colspan="7"> 
+          <label class="control-label" for="detail">Finding</label>
+          <input name="detail" type="text" ng-model="auditprogram._id" id="detail" class="form-control" placeholder="Detail" required>
+          <label class="control-label" for="detail">Observation</label>
+          <input name="detail" type="text" ng-model="auditprogram.process" id="detail" class="form-control" placeholder="Detail" required>
+          <label class="control-label" for="detail">Respond</label>
+          <input name="detail" type="text" ng-model="auditprogram.subprocess" id="detail" class="form-control" placeholder="Detail" required>
+         
+
+           <!--<div style="border-radius: 4px; float: left; border: 1px solid #bbb; height: 350px; width: 300px; padding: 10px; margin-right: 10px; margin-bottom: 10px" ng-repeat="item in uploader.queue">
+          <div class="form-group">
+          <img ng-src="{{imageURL}}" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture">
+        </div>
+          <div style="overflow: hidden; white-space: nowrap"><strong>Name: </strong>{{item.file.name}}</div>
+          <div><strong>Size:</strong>{{ item.file.size/1024/1024|number:2}} Mb</div>
+
+          <div>
+            <div><strong>Description:</strong></div>
+            <input type="text" ng-model="description[item.file.name]" style="width: 100%; border: 1px solid#ddd">
+          </div>
+
+         <p ng-show="uploader.isHTML5">
+            Upload Progress: {{item.progress}}
+            <div class="item-progress-box">
+             <div class="item-progress" ng-style="{'width': item.progress + '%'}"></div>
+            </div>
+          </p>
+
+  <div>
+    <button class="btn btn-primary" ng-click="item.remove()">Remove</button>  
+  </div>
+
+  </div>
+
+
+          
+
+
+        <div class="form-group" ng-hide="uploader.queue.length">
+          <span class="btn btn-default btn-file">
+              Select Image 
+            
+              <input type="file" nv-file-select="" uploader="uploader" multiple  />
+          </span>
+        </div>
+        <div class="form-group" ng-show="uploader.queue.length">
+          <button class="btn btn-primary" ng-click="uploadProfilePicture();" >Upload</button>
+          <button class="btn btn-default" ng-click="cancelUpload();">Cancel</button>
+        </div>
+        <div ng-show="success" class="text-success">
+          <strong>Profile Picture Changed Successfully</strong>
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+  
+        <img ng-src="{{imageURL}}" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture {{auditprogram.subprocess}}"
+
+         id="{{auditprogram.subprocess}}" >
+       
+          
+        <span class="btn btn-default btn-file">
+          Select Image             
+          <input type="file" nv-file-select uploader="uploader"name="detail" type="text" ng-model="auditprogram.subprocess" id="detail" class="form-control" placeholder="Detail" />
+        </span>
+          
+-->
+          <a class="btn btn-primary" data-ng-click="editfw(auditprogram._id,auditprogram.projectname,auditprogram.process,auditprogram.subprocess)">
+          <i class="glyphicon glyphicon-edit"></i>
+          </a>
+            </br>
+            <label class="control-label" for="detail">ID</label>
+          <input name="detail" type="text" ng-model="auditprogram._id" id="detail" class="form-control" placeholder="Detail" required>
+            <label class="control-label" for="detail">remark</label>
+          <input name="detail" type="text" ng-model="remark" id="detail" class="form-control" placeholder="Detail" required>
+            
+              <button ng-click="addstatus(auditprogram._id,remark,'Approve')">Approve</button>
+              <button ng-click="addstatus(auditprogram._id,remark,'Submit')">Submit</button>
+            <table class="table table-striped">
+            <tr ng-repeat="status in vm.statuses | filter:auditprogram._id" >
+              <th>{{status.user.displayName}}</th>
+              <th>{{status.remark}}</th>
+              <th>{{status.status}}</th> 
+              <th>{{status.created}}</th> 
+            </tr>
+           </table>
+          </td>
+
+           
+
+          </tr>
+
+
+
+
+    </table>
+</section>

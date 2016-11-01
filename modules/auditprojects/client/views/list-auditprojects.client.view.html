@@ -1,0 +1,61 @@
+<section>
+  <div class="page-header">
+    <h1>Audit Projects</h1>
+  </div>
+  <div class="list-group">
+   
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" ng-model="searchText" placeholder="Search...">
+      <span class="input-group-btn" type="button">
+        <button class="btn btn-default" type="button">GO!</button>
+      </span>
+    </div>
+
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th style="width:200px">Project Name</th>
+        <th style="width:200px">Project Owner</th>
+        <th style="width:100px">Start Date</th>
+        <th style="width:100px">Finish Date</th>
+      </tr>
+      </thead>
+    </table>
+    <a data-ng-repeat="auditproject in vm.auditprojects | filter:searchText""
+       data-ui-sref="auditprojects.view({ auditprojectId: auditproject._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="auditproject.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="auditproject.user" data-ng-bind="auditproject.user.displayName"></span>
+        <span data-ng-if="!auditproject.user">Deleted User</span>
+      </small>
+      
+
+      <table class="table table-striped">
+      
+
+      <tr >
+        <th style="width:200px">{{auditproject.projectname}}</th>
+        <th style="width:200px">{{auditproject.projectowner}}</th>
+        <th style="width:100px">{{auditproject.startdate}}</th>
+        <th style="width:100px">{{auditproject.finishdate}}</th>
+      </tr>
+    </table>
+
+
+      <!--<h4>Project Name</h4><h4 class="list-group-item-heading" data-ng-bind="auditproject.projectname"></h4>
+      
+      <h4>Project Owner</h4><h4 class="list-group-item-heading" data-ng-bind="auditproject.projectowner"></h4>
+      
+      <h4>Start Date</h4><h4 class="list-group-item-heading" data-ng-bind="auditproject.startdate"></h4>
+      
+      <h4>Finish Date</h4><h4 class="list-group-item-heading" data-ng-bind="auditproject.finishdate"></h4>-->
+
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.auditprojects.$resolved && !vm.auditprojects.length">
+    No Auditprojects yet, why don't you <a data-ui-sref="auditprojects.create">create one</a>?
+  </div>
+</section>
