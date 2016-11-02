@@ -138,9 +138,9 @@
           <input name="detail" type="text" ng-model="auditprogram._id" id="detail" class="form-control" placeholder="Detail" required>
             <label class="control-label" for="detail">remark</label>
           <input name="detail" type="text" ng-model="remark" id="detail" class="form-control" placeholder="Detail" required>
-            
-              <button ng-click="addstatus(auditprogram._id,remark,'Approve')">Approve</button>
-              <button ng-click="addstatus(auditprogram._id,remark,'Submit')">Submit</button>
+             
+              <button ng-if="authentication.user.roles == 'admin'" ng-click="addstatus(auditprogram._id,remark,'Approve')">Approve</button>
+              <button ng-if="authentication.user.roles == 'user'" ng-click="addstatus(auditprogram._id,remark,'Submit')">Submit</button>
             <table class="table table-striped">
             <tr ng-repeat="status in vm.statuses | filter:auditprogram._id" >
               <th>{{status.user.displayName}}</th>

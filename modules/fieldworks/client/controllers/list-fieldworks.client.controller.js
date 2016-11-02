@@ -5,10 +5,11 @@
     .module('fieldworks')
     .controller('FieldworksListController', FieldworksListController);
 
-  FieldworksListController.$inject = ['FileUploader','$timeout', '$window', '$scope','StatusesService','FieldworksService','AuditprogramsService','ProjectsService'];
+  FieldworksListController.$inject = ['Authentication','FileUploader','$timeout', '$window', '$scope','StatusesService','FieldworksService','AuditprogramsService','ProjectsService'];
 
-  function FieldworksListController(FileUploader,$timeout, $window, $scope,StatusesService,FieldworksService,AuditprogramsService,ProjectsService) {
+  function FieldworksListController(Authentication,FileUploader,$timeout, $window, $scope,StatusesService,FieldworksService,AuditprogramsService,ProjectsService) {
     var vm = this;
+    $scope.authentication = Authentication;
     vm.auditprograms = AuditprogramsService.query();
     vm.fieldworks = FieldworksService.query();
     vm.statuses = StatusesService.query();
